@@ -27,9 +27,8 @@ import SwiftUI
         let isPreview: Bool = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
         if !isPreview {
             try! ditto.startSync()
+            updateNotesPublisher()
         }
-        
-        updateNotesPublisher()
     }
     
 }
