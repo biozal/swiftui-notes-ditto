@@ -52,7 +52,13 @@ import Combine
     }
     
     func deleteNote(at offsets: IndexSet) {
-        notes.remove(atOffsets: offsets)
+        // Get the notes to delete from the offsets
+        let notesToDelete = offsets.map { notes[$0] }
+        
+        // Delete each note through the DittoService
+        notesToDelete.forEach { note in
+            DittoService.shared.deleteNote(note)
+        }
     }
 }
 

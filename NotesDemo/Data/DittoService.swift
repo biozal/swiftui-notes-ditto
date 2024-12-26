@@ -39,6 +39,17 @@ extension DittoService {
    func addNote(_ note: Note) {
         storeService.insertNote(of: note)
     }
+    
+    func deleteNote(_ note: Note) {
+        //stop the subscription before deleting
+        syncService.cancelSubscription()
+        
+        //delete the note
+        storeService.deleteNote(of: note)
+        
+        //start the subscription
+        syncService.registerSubscriptions()
+    }
 }
 
 // MARK: - Private
